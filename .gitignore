@@ -1,2 +1,10 @@
-*.json
+# Sensitive info
+auth.json
+package.json
+
+# Useless images
+Voila.png
+Voila3D.png
+VoilaChristmas.png
+
 # git config --global core.excludesfile ~/.gitignore_global

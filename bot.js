@@ -9,7 +9,7 @@ const ytsearch = require('youtube-search');
 const colors = require('colors');
 
 var dispatcher = [];
-var cueue = [];
+var queue = [];
 
 const YTApiKey = auth.yttoken;
 
