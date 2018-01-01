@@ -5,7 +5,6 @@
   "main": "bot.js",
   "author": "SharkFin",
   "ownerid": "221744875941396480",
-  "game": "$help",
   "dependencies": {
     "colors": "^1.1.2",
     "discord-bot-list": "^1.0.1",
