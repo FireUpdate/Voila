@@ -11,7 +11,7 @@ const colors = require('colors');
 var dispatcher = [];
 var cueue = [];
 
-const YTApiKey = "AIzaSyCwpsCmKJoTG3QMI1kixcczNm0XtH2FBaA";
+const YTApiKey = auth.yttoken;
 
 // Configure logger settings
 // Initialize Discord Bot
