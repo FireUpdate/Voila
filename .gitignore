@@ -7,4 +7,7 @@ Voila.png
 Voila3D.png
 VoilaChristmas.png
 
+#Batch files not required
+*.bat
+
 # git config --global core.excludesfile ~/.gitignore_global
