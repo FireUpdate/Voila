@@ -19,7 +19,8 @@ exports.run = (bot, message, args, channel, user, usericon, userid, ownerid, pre
           value: [
             ' - `'+prefix+'guilds`  --  *List the names of every guild I\'m in*',
             ' - `'+prefix+'eval <input>`  --  *Enter a javascript command*',
-            ' - `'+prefix+'restart`  --  *Restarts the bot*'
+            ' - `'+prefix+'restart`  --  *Restarts the bot*',
+            ' - `'+prefix+'reload`  --  *Reload all commands instead of restarting.*'
           ].join('\n')
         },
         {
