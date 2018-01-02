@@ -9,5 +9,6 @@ VoilaChristmas.png
 
 #Batch files not required
 *.bat
+botOLD.js
 
 # git config --global core.excludesfile ~/.gitignore_global

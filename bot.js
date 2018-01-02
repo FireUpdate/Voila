@@ -210,7 +210,7 @@ bot.on("message", (message) => {
     var cmd = args[0].toLowerCase();
     args = args.splice(1);
     const user = message.author.username;
-    const usericon = message.avatarURL;
+    const usericon = message.author.avatarURL;
     const userid = message.author.id;
     const usertag = message.author;
     const channel = message.channel;
@@ -387,71 +387,81 @@ bot.on("message", (message) => {
 
       case 'server':
         console.log(user.cyan+": ".cyan+message.content.white);
-        botInfo = [
-          {
-            name: 'Name',
-            value: `${message.guild.name}`,
-            inline: true
-          },
-          {
-            name: 'Region',
-            value: `${message.guild.region}`,
-            inline: true
-          },
-          {
-            name: 'Owner',
-            value: `${message.guild.owner.user.tag}`,
-            inline: true
-          },
-          {
-            name: 'Members',
-            value: `${channel.guild.members.size} member(s)`,
-            inline: true
-          },
-          {
-            name: 'Server ID',
-            value: `${message.guild.id}`,
-            inline: true
-          },
-          {
-            name: 'Roles',
-            value: `${message.guild.roles.size}`,
-            inline: true
-          },
-          {
-            name: 'Text Channels',
-            value: message.guild.channels.filter(c => c.type === 'text').size,
-            inline: true
-          },
-          {
-            name: 'Voice Channels',
-            value: message.guild.channels.filter(c => c.type === 'voice').size,
-            inline: true
-          },
-          {
-            name: 'Catagories',
-            value: message.guild.channels.filter(c => c.type !== 'voice' && c.type !== 'dm' && c.type !== 'group' && c.type !== 'text' && c.type !== 'unknown').size,
-            inline: true
-          },
-          {
-            name: 'Custom Emojis',
-            value: message.guild.emojis.size,
-            inline: true
-          }
-        ];
-        channel.send({
-          embed: {
-            color: 3447003,
-            title: "Bot Info\n",
-            thumbnail: {
-              url: bot.user.avatarURL
-            },
-            fields: botInfo,
-            footer: {
-              icon_url: bot.user.avatarURL,
-              text: prefix+'server'
+        gistMake({
+          description: 'Users',
+          public: false,
+          files: [
+            {
+              name: 'Users.js',
+              source: message.guild.members.map(m => `${m.user.tag}`).join('\n')
             }
-          }
+          ]
+        }).then(url => {
+          channel.send({
+            embed: {
+              color: 3447003,
+              title: "Server Info\n",
+              thumbnail: {
+                url: bot.user.avatarURL
+              },
+              fields: [
+                {
+                  name: 'Name',
+                  value: `${message.guild.name}`,
+                  inline: true
+                },
+                {
+                  name: 'Region',
+                  value: `${message.guild.region}`,
+                  inline: true
+                },
+                {
+                  name: 'Owner',
+                  value: `${message.guild.owner.user.tag}`,
+                  inline: true
+                },
+                {
+                  name: 'Server ID',
+                  value: `${message.guild.id}`,
+                  inline: true
+                },
+                {
+                  name: 'Roles',
+                  value: `${message.guild.roles.size}`,
+                  inline: true
+                },
+                {
+                  name: 'Text Channels',
+                  value: message.guild.channels.filter(c => c.type === 'text').size,
+                  inline: true
+                },
+                {
+                  name: 'Voice Channels',
+                  value: message.guild.channels.filter(c => c.type === 'voice').size,
+                  inline: true
+                },
+                {
+                  name: 'Catagories',
+                  value: message.guild.channels.filter(c => c.type !== 'voice' && c.type !== 'dm' && c.type !== 'group' && c.type !== 'text' && c.type !== 'unknown').size,
+                  inline: true
+                },
+                {
+                  name: 'Custom Emojis',
+                  value: message.guild.emojis.size,
+                  inline: true
+                },
+                {
+                  name: 'Members',
+                  value: `[List of all ${channel.guild.members.size} members.](${url})`,
+                  inline: true
+                }
+              ],
+              footer: {
+                icon_url: bot.user.avatarURL,
+                text: prefix+'server'
+              }
+            }
+          })
         });
       break;
 
@@ -465,10 +475,7 @@ bot.on("message", (message) => {
         console.log(user.cyan+": ".cyan+message.content.white);
         if (userid == ownerid) {
           try {
-            var cmd = "";
-            for(i=0;i<args.length;i++) {
-              cmd+=args[i]+" ";
-            }
+            var cmd = args.join(' ');
 
             channel.send({embed: {
               color: 3447003,
