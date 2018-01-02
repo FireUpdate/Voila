@@ -205,10 +205,6 @@ function react(reactnum, pollreact, message) {
 
 
 bot.on("message", (message) => {
-  if (message.author.id == bot.id) {
-    console.log("Voila!: ".cyan+message.content.white+"\n");
-  }
-
   if (message.content.substring(0, prefix.length).toLowerCase() == prefix && !message.author.bot) {
     var args = message.content.substring(prefix.length).split(' ');
     var cmd = args[0].toLowerCase();
@@ -330,7 +326,7 @@ bot.on("message", (message) => {
       break;
 
       case 'botinfo':
-        console.log(user.cyan+": ".cyan+message.content.white+'\n');
+        console.log(user.cyan+": ".cyan+message.content.white);
         botInfo = [
           {
             name: 'Bot tag',
@@ -390,7 +386,7 @@ bot.on("message", (message) => {
       break;
 
       case 'server':
-        console.log(user.cyan+": ".cyan+message.content.white+'\n');
+        console.log(user.cyan+": ".cyan+message.content.white);
         botInfo = [
           {
             name: 'Name',
@@ -453,7 +449,7 @@ bot.on("message", (message) => {
             fields: botInfo,
             footer: {
               icon_url: bot.user.avatarURL,
-              text: prefix+'botinfo'
+              text: prefix+'server'
             }
           }
         });
