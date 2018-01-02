@@ -80,9 +80,17 @@ bot.on('ready', () => {
     });
   }, 15000);
 
-  fs.readdir("./commands/", (err, files) => {
-    global.fileCount = files.length;
-  });
+    fs.readdir("./Discord\ Bot/commands/", (err, files) => {
+      try {
+        global.fileCount = files.length;
+      } catch(err) {}
+    });
+
+    fs.readdir('./commands/', (err, files) => {
+      try {
+        global.fileCount = files.length;
+      } catch (err) {}
+    });
 });
 
 
