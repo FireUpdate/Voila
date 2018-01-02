@@ -389,6 +389,76 @@ bot.on("message", (message) => {
         });
       break;
 
+      case 'server':
+        console.log(user.cyan+": ".cyan+message.content.white+'\n');
+        botInfo = [
+          {
+            name: 'Name',
+            value: `${message.guild.name}`,
+            inline: true
+          },
+          {
+            name: 'Region',
+            value: `${message.guild.region}`,
+            inline: true
+          },
+          {
+            name: 'Owner',
+            value: `${message.guild.owner.user.tag}`,
+            inline: true
+          },
+          {
+            name: 'Members',
+            value: `${channel.guild.members.size} member(s)`,
+            inline: true
+          },
+          {
+            name: 'Server ID',
+            value: `${message.guild.id}`,
+            inline: true
+          },
+          {
+            name: 'Roles',
+            value: `${message.guild.roles.size}`,
+            inline: true
+          },
+          {
+            name: 'Text Channels',
+            value: message.guild.channels.filter(c => c.type === 'text').size,
+            inline: true
+          },
+          {
+            name: 'Voice Channels',
+            value: message.guild.channels.filter(c => c.type === 'voice').size,
+            inline: true
+          },
+          {
+            name: 'Catagories',
+            value: message.guild.channels.filter(c => c.type !== 'voice' && c.type !== 'dm' && c.type !== 'group' && c.type !== 'text' && c.type !== 'unknown').size,
+            inline: true
+          },
+          {
+            name: 'Custom Emojis',
+            value: message.guild.emojis.size,
+            inline: true
+          }
+        ];
+        channel.send({
+          embed: {
+            color: 3447003,
+            title: "Bot Info\n",
+            thumbnail: {
+              url: bot.user.avatarURL
+            },
+            fields: botInfo,
+            footer: {
+              icon_url: bot.user.avatarURL,
+              text: prefix+'botinfo'
+            }
+          }
+        });
+      break;
+
       case 'donger':
         console.log(user.cyan+": ".cyan+message.content.white);
         channel.send(donger[Math.round(Math.random() * donger.length)]);
@@ -498,6 +568,7 @@ bot.on("message", (message) => {
                   ' - `'+prefix+'ping`  --  *Pings the bot*',
                   ' - `'+prefix+'8ball <question>`  --  *Ask me anything!*',
                   ' - `'+prefix+'botinfo`  --  *Get some info about Voila!*',
+                  ' - `'+prefix+'server`  --  *Get some info about the server.*',
                   ' - `'+prefix+'avatar [@user]`  --  *Mention not required. Gets a larger scale image of an avatar.*'
                 ].join('\n')
               },
