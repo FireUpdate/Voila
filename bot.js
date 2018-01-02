@@ -402,7 +402,7 @@ bot.on("message", (message) => {
               color: 3447003,
               title: "Server Info\n",
               thumbnail: {
-                url: bot.user.avatarURL
+                url: message.guild.iconURL
               },
               fields: [
                 {
