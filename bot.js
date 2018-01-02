@@ -441,7 +441,7 @@ bot.on("message", (message) => {
                   inline: true
                 },
                 {
-                  name: 'Catagories',
+                  name: 'Categories',
                   value: message.guild.channels.filter(c => c.type !== 'voice' && c.type !== 'dm' && c.type !== 'group' && c.type !== 'text' && c.type !== 'unknown').size,
                   inline: true
                 },
