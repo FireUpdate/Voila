@@ -480,7 +480,19 @@ bot.on("message", (message) => {
             channel.send({embed: {
               color: 3447003,
               title: "Evaluation",
-              description: ":inbox_tray: **Input:**\n```javascript\n"+cmd+"```\n :outbox_tray: **Output:**\n```javascript\n"+eval(cmd)+"``` ",
+              thumbnail: {
+                url: bot.user.avatarURL
+              },
+              fields: [
+                {
+                  name: ':inbox_tray: Input:',
+                  value: '```js\n'+cmd+'```'
+                },
+                {
+                  name: ':outbox_tray: Output:',
+                  value: '```js\n'+eval(cmd)+'```'
+                }
+              ],
               footer: {
                 icon_url: bot.user.avatarURL,
                 text: prefix+"eval"
@@ -496,7 +508,19 @@ bot.on("message", (message) => {
             channel.send({embed: {
               color: 3447003,
               title: "Evaluation",
-              description: ":inbox_tray: **Input:**\n```javascript\n"+cmd+"```\n :outbox_tray: **Output:**\n```"+error+"``` ",
+              thumbnail: {
+                url: bot.user.avatarURL
+              },
+              fields: [
+                {
+                  name: ':inbox_tray: Input:',
+                  value: '```js\n'+cmd+'```'
+                },
+                {
+                  name: ':outbox_tray: Output:',
+                  value: '```\n'+error+'```'
+                }
+              ],
               footer: {
                 icon_url: bot.user.avatarURL,
                 text: prefix+"eval"
