@@ -826,8 +826,8 @@ bot.on("message", (message) => {
           ytsearch(args.join(' '), opts, function(err, results) {
             if(err) return console.log(err);
 
+            let print = '';
             try {
-              let print = '';
               for (i=0;i<maxRes;i++) {
                 print+=`[${i+1}] ${results[i].title}\n`
               }
