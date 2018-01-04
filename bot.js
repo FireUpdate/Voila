@@ -10,8 +10,8 @@ const colors = require('colors');
 const gistMake = require('create-gist');
 const YTApiKey = auth.yttoken;
 
-global.dispatcher = [];
-global.queue = [];
+let dispatcher = [];
+let queue = [];
 
 // Configure logger settings
 // Initialize Discord Bot
@@ -58,8 +58,8 @@ bot.on('ready', () => {
     }
   });  // Set default game
 
-  var game = setInterval(function() {
-    var games = [defaultgame, "In "+bot.guilds.size+" guilds!", `${(new Date).toDateString()}`, "Ping: "+Math.round(bot.ping)+"ms"];
+  let game = setInterval(function() {
+    let games = [defaultgame, "In "+bot.guilds.size+" guilds!", `${(new Date).toDateString()}`, "Ping: "+Math.round(bot.ping)+"ms"];
     gamenum+=1;
     bot.user.setPresence({
       status: "online",
@@ -206,8 +206,8 @@ function react(reactnum, pollreact, message) {
 
 bot.on("message", (message) => {
   if (message.content.substring(0, prefix.length).toLowerCase() == prefix && !message.author.bot) {
-    var args = message.content.substring(prefix.length).split(' ');
-    var cmd = args[0].toLowerCase();
+    let args = message.content.substring(prefix.length).split(' ');
+    let cmd = args[0].toLowerCase();
     args = args.splice(1);
     const user = message.author.username;
     const usericon = message.author.avatarURL;
@@ -230,7 +230,7 @@ bot.on("message", (message) => {
     switch(cmd) {
       case '8ball':
         console.log(user.cyan+": ".cyan+message.content.white);
-        var ball = '';
+        let ball = '';
         for (i=0;i<args.length;i++) {
           ball+=args[i]+' ';
         }
@@ -252,9 +252,9 @@ bot.on("message", (message) => {
 
       case 'ascii':
         console.log(user.cyan+": ".cyan+message.content.white);
-        var max = 15;
-        var text = "";
-        var ascii = "";
+        let max = 15;
+        let text = "";
+        let ascii = "";
         for(i=0;i<args.length;i++) {
           if (args[i+1] != undefined && (text.length+args[i].length+args[i+1].length) >= max) {
             text+=args[i]+" \n";
@@ -475,7 +475,7 @@ bot.on("message", (message) => {
         console.log(user.cyan+": ".cyan+message.content.white);
         if (userid == ownerid) {
           try {
-            var cmd = args.join(' ');
+            let cmd = args.join(' ');
 
             channel.send({embed: {
               color: 3447003,
@@ -500,7 +500,7 @@ bot.on("message", (message) => {
             }});
 
           } catch (error) {
-            var cmd = "";
+            let cmd = "";
             for(i=0;i<args.length;i++) {
               cmd+=args[i]+" ";
             }
@@ -663,9 +663,9 @@ bot.on("message", (message) => {
 
       case 'poll':
         console.log(user.cyan+": ".cyan+message.content.white);
-        var word = "";
-        var options = "";
-        var thing = 1;
+        let word = "";
+        let options = "";
+        let thing = 1;
 
         for(i=0;i<args.length;i++) {
           word+=args[i]+" ";
@@ -719,8 +719,8 @@ bot.on("message", (message) => {
         if (args[1] == undefined) {
           channel.send("Please choose a number to begin, and end with. '"+prefix+"random 5 13'");
         } else if (args[0] != undefined && args[1] != undefined) {
-          var min = parseInt(args[0])
-          var max = parseInt(args[1])
+          let min = parseInt(args[0])
+          let max = parseInt(args[1])
           channel.send(Math.round(Math.random() * (max - min) + min));
         }
       break;
@@ -741,7 +741,7 @@ bot.on("message", (message) => {
         if (message.member.hasPermission("MANAGE_MESSAGES")) {
           try {
             if (args[0] != undefined && args[0].substring(0, 2) == "<#") {
-              var msg = "";
+              let msg = "";
               for(i=1;i<args.length;i++) {
                 msg += args[i]+" "
               }
@@ -791,8 +791,8 @@ bot.on("message", (message) => {
 
       case 'play':
         console.log(user.cyan+": ".cyan+message.content.white);
-        var maxRes = 5;
-        var opts = {
+        let maxRes = 5;
+        let opts = {
           maxResults: maxRes,
           key: YTApiKey
         };
@@ -823,7 +823,7 @@ bot.on("message", (message) => {
             if(err) return console.log(err);
 
             try {
-              var print = '';
+              let print = '';
               for (i=0;i<maxRes;i++) {
                 print+=`[${i+1}] ${results[i].title}\n`
               }
@@ -832,7 +832,7 @@ bot.on("message", (message) => {
             }
 
             channel.send(`**${print}**`);
-            var collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
+            let collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 10000 });
             collector.on('collect', message => {
               try {
                 if (parseInt(message.content) <= maxRes && parseInt(message.content) > 0) {
@@ -840,7 +840,7 @@ bot.on("message", (message) => {
                     message.member.voiceChannel.join().then(connection =>{
                       stream = ytdl(results[parseInt(message.content)-1].link, {filter : 'audioonly'});
                       dispatcher[dispatcher.length] = connection.playStream(stream);
-                      var last = dispatcher.length-1;
+                      let last = dispatcher.length-1;
                       dispatcher[last].on('end', () => {
                         dispatcher[last].player.voiceConnection.channel.leave()
                       });
