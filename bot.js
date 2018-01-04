@@ -59,7 +59,7 @@ bot.on('ready', () => {
   });  // Set default game
 
   var game = setInterval(function() {
-    var games = [defaultgame, "In "+bot.guilds.size+" guilds!", "Voila is cool!", "Ping: "+Math.round(bot.ping)+"ms", "Happy New Year! 🎉"];
+    var games = [defaultgame, "In "+bot.guilds.size+" guilds!", `${(new Date).toDateString()}`, "Ping: "+Math.round(bot.ping)+"ms"];
     gamenum+=1;
     bot.user.setPresence({
       status: "online",
