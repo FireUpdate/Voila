@@ -480,9 +480,6 @@ bot.on("message", (message) => {
             channel.send({embed: {
               color: 3447003,
               title: "Evaluation",
-              thumbnail: {
-                url: bot.user.avatarURL
-              },
               fields: [
                 {
                   name: ':inbox_tray: Input:',
@@ -508,9 +505,6 @@ bot.on("message", (message) => {
             channel.send({embed: {
               color: 3447003,
               title: "Evaluation",
-              thumbnail: {
-                url: bot.user.avatarURL
-              },
               fields: [
                 {
                   name: ':inbox_tray: Input:',
@@ -527,6 +521,7 @@ bot.on("message", (message) => {
               }
             }});
           }
+          message.delete();
         } else {
           channel.send("Only the owner of the bot can use this!");
         }
@@ -678,19 +673,28 @@ bot.on("message", (message) => {
           }
           channel.send({embed: {
             color: 3447003,
-            title: word.split(/,/)[0],
+            title: 'Poll',
             author: {
               name: user,
               icon_url: usericon
             },
-            description: options,
+            thumbnail: {
+              url: bot.user.avatarURL
+            },
+            fields: [
+              {
+                name: word.split(/,/)[0],
+                value: options
+              }
+            ],
             footer: {
               icon_url: bot.user.avatarURL,
-              text: prefix+'poll | From '+user
+              text: prefix+'poll'
             }
           }}).then(msg => react(0, pollreact, msg));
           poll = 1;
           pollreact = word.split(/,/).length - 1;
+          message.delete();
         } else {
           channel.send("Too many options! There can only be a maximum of 10.");
         }
