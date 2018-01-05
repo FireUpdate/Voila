@@ -304,6 +304,34 @@ bot.on("message", (message) => {
         }
       break;
 
+      case 'discrim':
+        console.log(user.cyan+": ".cyan+message.content.white);
+        let myOutput = '';
+        if (args.length >= 1) {
+          if (!isNaN(parseInt(args[0].substring(0,4)))) {
+            myOutput = bot.users.filter(u => u.discriminator == parseInt(args[0].substring(0,4))).map(u => u.tag).join('\n');
+          }
+        } else {
+          myOutput = bot.users.filter(u => u.discriminator == message.author.discriminator).map(u => u.tag).join('\n');
+        }
+        if (myOutput.length == 0) {
+          channel.send('Nobody found with that discriminator!')
+        } else {
+          channel.send({
+            embed: {
+              color: 3447003,
+              title: 'Discrim Search',
+              fields: [
+                {
+                  name: ' - - - Discriminator Search Results - - - ',
+                  value: `\`\`\`js\n${myOutput}\`\`\``
+                }
+              ]
+            }
+          });
+        }
+      break;
+
       case 'binary':
         console.log(user.cyan+": ".cyan+message.content.white);
         if (args[0] != undefined) {
@@ -591,7 +619,8 @@ bot.on("message", (message) => {
                   ' - `'+prefix+'8ball <question>`  --  *Ask me anything!*',
                   ' - `'+prefix+'botinfo`  --  *Get some info about Voila!*',
                   ' - `'+prefix+'server`  --  *Get some info about the server.*',
-                  ' - `'+prefix+'avatar [@user]`  --  *Mention not required. Gets a larger scale image of an avatar.*'
+                  ' - `'+prefix+'avatar [@user]`  --  *Mention not required. Gets a larger scale image of an avatar.*',
+                  ' - `'+prefix+'discrim`  --  *Search every guild I am in for somebody with a certain discriminator*',
                 ].join('\n')
               },
               {
