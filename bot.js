@@ -302,7 +302,9 @@ bot.on("message", (message) => {
     const userid = message.author.id;
     const usertag = message.author;
     const channel = message.channel;
-    const roles = message.member._roles;
+    try {
+      const roles = message.member._roles;
+    } catch (err) {}
     const ownerid = pack.ownerid;
 
     /*
