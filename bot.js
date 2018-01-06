@@ -69,6 +69,94 @@ bot.on('ready', () => {
       }
     });
   }, 15000);
+
+  bot.on('guildCreate', guild => {
+    let logChan = bot.channels.get('399220613195104257');
+    logChan.send({
+      embed: {
+        color: 0x44FF44,
+        title: 'Guild Joined!',
+        thumbnail: {
+          url: guild.iconURL
+        },
+        fields: [
+          {
+            name: 'Name',
+            value: guild.name,
+            inline: true
+          },
+          {
+            name: 'Owner',
+            value: guild.owner.user.username,
+            inline: true
+          },
+          {
+            name: 'Members',
+            value: guild.members.filter(m => m.user.bot == false).size,
+            inline: true
+          },
+          {
+            name: 'Bots',
+            value: guild.members.filter(m => m.user.bot == true).size,
+            inline: true
+          },
+          {
+            name: 'Voila Guild Count',
+            value: bot.guilds.size,
+            inline: true
+          }
+        ],
+        footer: {
+          icon_url: bot.user.avatarURL,
+          text: new Date()
+        }
+      }
+    });
+  });
+
+  bot.on("guildDelete", guild => {
+    let logChan = bot.channels.get('399220613195104257');
+    logChan.send({
+      embed: {
+        color: 0xFF4444,
+        title: 'Guild Left!',
+        thumbnail: {
+          url: guild.iconURL
+        },
+        fields: [
+          {
+            name: 'Name',
+            value: guild.name,
+            inline: true
+          },
+          {
+            name: 'Owner',
+            value: guild.owner.user.username,
+            inline: true
+          },
+          {
+            name: 'Members',
+            value: guild.members.filter(m => m.user.bot == false).size,
+            inline: true
+          },
+          {
+            name: 'Bots',
+            value: guild.members.filter(m => m.user.bot == true).size,
+            inline: true
+          },
+          {
+            name: 'Voila Guild Count',
+            value: bot.guilds.size,
+            inline: true
+          }
+        ],
+        footer: {
+          icon_url: bot.user.avatarURL,
+          text: new Date()
+        }
+      }
+    });
+  });
 });
 
 const prefix = 'v!';
