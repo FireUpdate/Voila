@@ -11,7 +11,7 @@ exports.run = (message) => {
   }).then(url => {
     channel.send({
       embed: {
-        color: 3447003,
+        color: embedColor,
         title: "Server Info\n",
         thumbnail: {
           url: message.guild.iconURL

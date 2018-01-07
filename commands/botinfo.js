@@ -4,7 +4,7 @@ exports.run = (message) => {
     fileCount = files.length;
     channel.send({
       embed: {
-        color: 3447003,
+        color: embedColor,
         title: "Bot Info\n",
         thumbnail: {
           url: bot.user.avatarURL
