@@ -1,4 +1,6 @@
 let gamenum = 0;
+const os = require('os');
+
 exports.run = () => {
   const client = new dbl({
       token: auth.dbltoken,
@@ -12,22 +14,41 @@ exports.run = () => {
       }
     });
   },60000); // Upload discord bot list guilds
-  
-  console.log(voilalog.cyan);
-  console.log('      '+pack.description.cyan);
-  console.log('      Logged in as: '.cyan+bot.user.tag.white + ' - '.cyan + '<@'.white + bot.user.id.white + '>'.white);
-  console.log('      Prefix: '.cyan+prefix.white)
-  console.log('      Set game to: '.cyan+defaultgame.white);
+
 
   client.postStats(parseInt(bot.guilds.size), (err, res) => {
       if(err) {
-          console.log("      "+err);
-          console.log('      All bot interactions are logged below!'.cyan);
-          console.log('-----------------------------------------------------------------------\n'.cyan);
+        console.log('--------------------------------------------------------------------------------'.cyan);
+          console.log([
+            '',
+            '                ::::::       '.cyan+'Cpu Name: '.cyan+`${os.cpus()[1].model}`.white,
+            '                :::::::      '.cyan+'Logged in as: '.cyan+bot.user.tag.white,
+            '....`     ,,.   :::::::      '.cyan+'Prefix: '.cyan+prefix.white,
+            '::::::` ::::::  :::::::      '.cyan+'Activity: '.cyan+defaultgame.white,
+            '::::::: ::::::: .:::::       '.cyan+'Guilds: '.cyan+`${bot.guilds.size}`.white,
+            ' :::::: ::::::`  :::         '.cyan+'Os: '.cyan+`${os.platform()}`.white,
+            ' :::::: ::::::   :::::       '.cyan+'Cpu Count: '.cyan+`${os.cpus().length}`.white,
+            ' .:::::::::::.  :::::::      '.cyan+'Directory: '.cyan+`${__dirname}`.white,
+            '  :::::::::::   :::::::.     '.cyan+'Owner: '.cyan+'SharkFin#2790'.white,
+            '   .:::::::      :::::       '.cyan+'Error uploading guilds to server'.red,
+            '     `,,.          .`        '.cyan+'All bot interactions will be logged below'.cyan].join('\n   '));
+          console.log('--------------------------------------------------------------------------------\n'.cyan);
       } else {
-          console.log("      Successfully uploaded ".cyan+`${bot.guilds.size}`.white+" guilds to the website!".cyan);
-          console.log('      All bot interactions are logged below!'.cyan);
-          console.log('-----------------------------------------------------------------------\n'.cyan);
+        console.log('--------------------------------------------------------------------------------'.cyan);
+          console.log([
+            '',
+            '                ::::::       '.cyan+'Cpu Name: '.cyan+`${os.cpus()[1].model}`.white,
+            '                :::::::      '.cyan+'Logged in as: '.cyan+bot.user.tag.white,
+            '....`     ,,.   :::::::      '.cyan+'Prefix: '.cyan+prefix.white,
+            '::::::` ::::::  :::::::      '.cyan+'Activity: '.cyan+defaultgame.white,
+            '::::::: ::::::: .:::::       '.cyan+'Guilds: '.cyan+`${bot.guilds.size}`.white,
+            ' :::::: ::::::`  :::         '.cyan+'Os: '.cyan+`${os.platform()}`.white,
+            ' :::::: ::::::   :::::       '.cyan+'Cpu Count: '.cyan+`${os.cpus().length}`.white,
+            ' .:::::::::::.  :::::::      '.cyan+'Directory: '.cyan+`${__dirname}`.white,
+            '  :::::::::::   :::::::.     '.cyan+'Owner: '.cyan+'SharkFin#2790'.white,
+            '   .:::::::      :::::       '.cyan+"Successfully uploaded ".cyan+`${bot.guilds.size}`.white+" guilds to the website!".cyan,
+            '     `,,.          .`        '.cyan+'All bot interactions will be logged below'.cyan].join('\n   '));
+          console.log('--------------------------------------------------------------------------------\n'.cyan);
       }
   });
 

@@ -64,7 +64,7 @@ exports.run = (message) => {
           },
           {
             name: 'Members',
-            value: `[List of all ${channel.guild.members.size} members.](${url})`,
+            value: `[List of all ${channel.guild.memberCount} members.](${url})`,
             inline: true
           }
         ],
