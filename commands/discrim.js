@@ -12,7 +12,7 @@ exports.run = (message) => {
   } else {
     channel.send({
       embed: {
-        color: 3447003,
+        color: embedColor,
         title: 'Discrim Search',
         fields: [
           {
@@ -21,7 +21,6 @@ exports.run = (message) => {
           }
         ],
         footer: {
-          icon_url: bot.user.avatarURL,
           text: prefix+'discrim'
         }
       }

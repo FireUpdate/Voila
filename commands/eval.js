@@ -4,8 +4,8 @@ exports.run = (message) => {
       let cmd = args.join(' ');
 
       channel.send({embed: {
-        color: 3447003,
-        title: "Evaluation",
+        color: embedColor,
+        title: "Eval - Javascript",
         fields: [
           {
             name: ':inbox_tray: Input:',
@@ -17,8 +17,7 @@ exports.run = (message) => {
           }
         ],
         footer: {
-          icon_url: bot.user.avatarURL,
-          text: prefix+"eval"
+          text: `${prefix}eval`
         }
       }});
 
@@ -42,12 +41,11 @@ exports.run = (message) => {
           }
         ],
         footer: {
-          icon_url: bot.user.avatarURL,
-          text: prefix+"eval"
+          text: `${prefix}eval`
         }
       }});
     }
-    message.delete();
+    message.delete(10);
   } else {
     channel.send("Only the owner of the bot can use this!");
   }

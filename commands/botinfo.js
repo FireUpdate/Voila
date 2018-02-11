@@ -17,7 +17,7 @@ exports.run = (message) => {
           },
           {
             name: 'Library',
-            value: 'discord.js v11.3-dev',
+            value: `discord.js ${Discord.version}`,
             inline: true
           },
           {
@@ -54,11 +54,30 @@ exports.run = (message) => {
             name: 'Commands',
             value: fileCount,
             inline: true
+          },
+          {
+            name: 'FAQ Server',
+            value: '[Join the FAQ channel](https://discord.gg/uWEsUKw)',
+            inline: true
+          },
+          {
+            name: 'Github',
+            value: '[View the github](https://github.com/PlayBy/Voila)',
+            inline: true
+          },
+          {
+            name: 'Discord Bot List',
+            value: '[View the listing on DBL](https://discordbots.org/bot/368115108641112064)',
+            inline: true
+          },
+          {
+            name: 'Invite',
+            value: '[Click to invite Voila!](https://discordapp.com/oauth2/authorize?client_id=368115108641112064&scope=bot&permissions=195656)',
+            inline: true
           }
         ],
         footer: {
-          icon_url: bot.user.avatarURL,
-          text: prefix+'botinfo'
+          text: `${prefix}botinfo`
         }
       }
     });

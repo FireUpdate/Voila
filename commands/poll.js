@@ -79,12 +79,8 @@ exports.run = (message) => {
       }
     }
     channel.send({embed: {
-      color: 3447003,
+      color: embedColor,
       title: 'Poll',
-      author: {
-        name: user,
-        icon_url: usericon
-      },
       thumbnail: {
         url: bot.user.avatarURL
       },
@@ -95,13 +91,12 @@ exports.run = (message) => {
         }
       ],
       footer: {
-        icon_url: bot.user.avatarURL,
         text: prefix+'poll'
       }
     }}).then(msg => react(0, pollreact, msg));
     poll = 1;
     pollreact = word.split(/,/).length - 1;
-    message.delete();
+    message.delete(10);
   } else {
     channel.send("Too many options! There can only be a maximum of 10.");
   }

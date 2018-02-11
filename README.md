@@ -21,10 +21,6 @@ Voila is a discord bot, created with [discord.js](https://discord.js.org). Voila
 # Specialties
 here are some of the things that Voila can do very well!
 
-## Music
-Voila supports music, just type `v!play <song>` to get jamming!<br>
-<img src="https://vgy.me/5R3EmA.gif" alt="Discord Bots" />
-
 ## Polls
 Voila supports polls! Need to vote on something? Just type `v!poll <question>, <options>, <options>`.<br>
 <img src="https://vgy.me/xqcBOb.gif" alt="Discord Bots" />
@@ -36,5 +32,4 @@ Are people spamming random chat in your server? Or are people releasing secrets 
 These are just some of the things that Voila can do! If you would like to see everything else it can do, why not [invite Voila](https://discordapp.com/oauth2/authorize?client_id=368115108641112064&scope=bot&permissions=195656) to your server. and have some fun!
 
 #### Credits
-Created by `@SharkFin#2790`<br>
-Assisted by `@sdf#6313`
+Created by `@SharkFin#2790`

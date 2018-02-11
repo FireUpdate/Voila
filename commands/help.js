@@ -1,47 +1,35 @@
 exports.run = (message) => {
-  channel.send(":inbox_tray: **| "+user+",** the help menu has been sent to your PMs");
+  channel.send(`:inbox_tray: **| ${user},** the help menu has been sent to you directly.`);
   message.author.send({
     embed: {
       color: embedColor,
-      title: "Voila Help Menu",
-      author: {
-        name: user,
-        icon_url: usericon
+      title: "Voila! Help Menu",
+      thumbnail: {
+        url: bot.user.avatarURL
       },
       fields: [
         {
-          name: '__**Use the '+prefix+' as the prefix!**__',
+          name: `**Prefix: __${prefix}__**`,
           value: '--------------------------------------------------'
         },
         {
-          name: '__**Bot Owner Commands**__',
+          name: '__**Moderation Commands**__',
           value: [
-            ' - `'+prefix+'eval <input>`  --  *Enter a javascript command*',
-            ' - `'+prefix+'restart`  --  *Restarts the bot*'
+            ' - `'+prefix+'kick [@user]`  --  *Kick somebody out of your server.*',
+            ' - `'+prefix+'ban [@user]`  --  *Ban somebody from your server.*',
+            ' - `'+prefix+'purge [number]`  --  *Bulk delete messages. (1-100)*'
           ].join('\n')
         },
         {
-          name: '__**Message Manager Commands**__',
-          value: [
-            ' - `'+prefix+'purge <number>`  --  *Bulk delete messages. (100 max)*'
-          ].join('\n')
-        },
-        {
-          name: '__**User Commands**__',
+          name: '__**Fun Commands**__',
           value: [
             ' - `'+prefix+'help`  --  *Open this help menu*',
-            ' - `'+prefix+'donger`  --  *Bring that spicy memeness into the conversation*',
             ' - `'+prefix+'flip`  --  *Flip a coin!*',
-            ' - `'+prefix+'random <low> <high>`  --  *Generates a random number between two specified values*',
-            ' - `'+prefix+'faq`  --  *Join the faq channel!*',
-            ' - `'+prefix+'smack <@user>`  --  *Smacks somebody*',
-            ' - `'+prefix+'binary <test>`  --  *Convert test to binary*',
-            ' - `'+prefix+'insult <@user>`  --  *Throws an insult at a user*',
-            ' - `'+prefix+'poll <question>, <option>, <option>`  --  *Creates a poll. 10 max options.*',
-            ' - `'+prefix+'invite`  --  *Send the invite link into chat*',
-            ' - `'+prefix+'ascii <text>`  --  *Converts text to ascii*',
-            ' - `'+prefix+'ping`  --  *Pings the bot*',
-            ' - `'+prefix+'8ball <question>`  --  *Ask me anything!*',
+            ' - `'+prefix+'smack [@user]`  --  *Smacks somebody*',
+            ' - `'+prefix+'poll [question], [option], [option]`  --  *Creates a poll. 10 max options.*',
+            ' - `'+prefix+'ascii [text]`  --  *Converts text to ascii*',
+            ' - `'+prefix+'ping`  --  *Get discord\'s heartbeat, and the response time of the bot.*',
+            ' - `'+prefix+'8ball [question]`  --  *Ask me anything!*',
             ' - `'+prefix+'botinfo`  --  *Get some info about Voila!*',
             ' - `'+prefix+'server`  --  *Get some info about the server.*',
             ' - `'+prefix+'avatar [@user]`  --  *Mention not required. Gets a larger scale image of an avatar.*',
@@ -50,7 +38,6 @@ exports.run = (message) => {
         }
       ],
       footer: {
-        icon_url: bot.user.avatarURL,
         text: prefix+'help'
       }
     }

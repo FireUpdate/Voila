@@ -3,5 +3,6 @@ const Coin = [
   "Tails"];
 
 exports.run = (message) => {
-  channel.send("And it's `"+Coin[Math.round(Math.random())]+"`!!");
+  channel.send("You flipped `"+Coin[Math.round(Math.random())]+"`!");
+  message.delete(10);
 }

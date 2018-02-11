@@ -10,7 +10,7 @@ exports.run = () => {
   setInterval(function(){
     client.postStats(parseInt(bot.guilds.size), (err, res) => {
       if(err) {
-          console.log('Error uploading guilds to server'.red);
+          //console.log('Error uploading guilds to server'.red);
       }
     });
   },60000); // Upload discord bot list guilds

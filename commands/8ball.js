@@ -23,19 +23,19 @@ const ballresp = [
 exports.run = (message) => {
   let ball = '';
   for (i=0;i<args.length;i++) {
-    ball+=args[i]+' ';
+    ball+=`${args[i]} `;
   }
   channel.send({embed: {
     color: embedColor,
-    title: "8ball \n",
-    author: {
-      name: user,
-      icon_url: usericon
-    },
-    description: "Your question: **"+ball+"** \n\n**:8ball: | "+ballresp[Math.floor(Math.random() * ballresp.length)]+"**",
+    title: '8ball \n',
+    fields: [
+      {
+        name: `Your question: __${ball}__`,
+        value: `**:8ball: | ${ballresp[Math.floor(Math.random() * ballresp.length)]}**`
+      }
+    ],
     footer: {
-      icon_url: bot.user.avatarURL,
-      text: prefix+"8ball | From "+user
+      text: `${prefix}8ball`
     }
   }});
   message.delete(10);

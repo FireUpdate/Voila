@@ -23,5 +23,5 @@ exports.run = (message) => {
       }
       channel.send("```"+data+"```");
   });
-  message.delete(100);
+  message.delete(10);
 }
