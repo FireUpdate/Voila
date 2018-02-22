@@ -14,7 +14,7 @@
     </a>
   </p>
   <p>
-    <a href="https://botsfordiscord.com/api/v1/bots/353287088528949248/embed" alt="Bots for Discord"/></a>
+    <a href="https://botsfordiscord.com/api/v1/bots/353287088528949248/embed.svg"/><img src='https://botsfordiscord.com/api/v1/bots/353287088528949248/embed.svg' alt="Bots for Discord" /></a>
   </p>
 </div>
 
