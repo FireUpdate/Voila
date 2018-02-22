@@ -15,9 +15,9 @@ exports.run = (message) => {
         channel.send('Please specify a value!')
       }
     } else {
-      channel.send("You need the `manage messages` permission!");
+      channel.send('You do not have permission to delete messages. You must have the `Manage Messages` permission.');
     }
-  catch(err) {
+  } catch(err) {
     channel.send('I do not have access to delete messages.');
   }
 }

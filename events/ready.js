@@ -2,55 +2,30 @@ let gamenum = 0;
 const os = require('os');
 
 exports.run = () => {
-  const client = new dbl({
-      token: auth.dbltoken,
-      id: bot.user.id
-  }) // Discord bot list sign in
+  global.dbl = new DBL(auth.dbltoken, bot);
+  global.bfd = new BFD(auth.bfdtoken);
 
   setInterval(function(){
-    client.postStats(parseInt(bot.guilds.size), (err, res) => {
-      if(err) {
-          //console.log('Error uploading guilds to server'.red);
-      }
-    });
+    dbl.postStats(bot.guilds.size).catch(err => {console.log(`Error ${err.code}: Error uploading guild count to DBL`.red)});
+    bfd.postCount(`${bot.guilds.size}`, `${bot.user.id}`).catch(err => {console.log(`Error ${err.code}: Error uploading guild count to BFD`.red)});
   },60000); // Upload discord bot list guilds
 
 
-  client.postStats(parseInt(bot.guilds.size), (err, res) => {
-      if(err) {
-        console.log('--------------------------------------------------------------------------------'.cyan);
-          console.log([
-            '',
-            '                ::::::       '.cyan+'Cpu Name: '.cyan+`${os.cpus()[1].model}`.white,
-            '                :::::::      '.cyan+'Logged in as: '.cyan+bot.user.tag.white,
-            '....`     ,,.   :::::::      '.cyan+'Prefix: '.cyan+prefix.white,
-            '::::::` ::::::  :::::::      '.cyan+'Activity: '.cyan+defaultgame.white,
-            '::::::: ::::::: .:::::       '.cyan+'Guilds: '.cyan+`${bot.guilds.size}`.white,
-            ' :::::: ::::::`  :::         '.cyan+'Os: '.cyan+`${os.platform()}`.white,
-            ' :::::: ::::::   :::::       '.cyan+'Cpu Count: '.cyan+`${os.cpus().length}`.white,
-            ' .:::::::::::.  :::::::      '.cyan+'Directory: '.cyan+`${__dirname}`.white,
-            '  :::::::::::   :::::::.     '.cyan+'Owner: '.cyan+'SharkFin#2790'.white,
-            '   .:::::::      :::::       '.cyan+'Error uploading guilds to server'.red,
-            '     `,,.          .`        '.cyan+'All bot interactions will be logged below'.cyan].join('\n   '));
-          console.log('--------------------------------------------------------------------------------\n'.cyan);
-      } else {
-        console.log('--------------------------------------------------------------------------------'.cyan);
-          console.log([
-            '',
-            '                ::::::       '.cyan+'Cpu Name: '.cyan+`${os.cpus()[1].model}`.white,
-            '                :::::::      '.cyan+'Logged in as: '.cyan+bot.user.tag.white,
-            '....`     ,,.   :::::::      '.cyan+'Prefix: '.cyan+prefix.white,
-            '::::::` ::::::  :::::::      '.cyan+'Activity: '.cyan+defaultgame.white,
-            '::::::: ::::::: .:::::       '.cyan+'Guilds: '.cyan+`${bot.guilds.size}`.white,
-            ' :::::: ::::::`  :::         '.cyan+'Os: '.cyan+`${os.platform()}`.white,
-            ' :::::: ::::::   :::::       '.cyan+'Cpu Count: '.cyan+`${os.cpus().length}`.white,
-            ' .:::::::::::.  :::::::      '.cyan+'Directory: '.cyan+`${__dirname}`.white,
-            '  :::::::::::   :::::::.     '.cyan+'Owner: '.cyan+'SharkFin#2790'.white,
-            '   .:::::::      :::::       '.cyan+"Successfully uploaded ".cyan+`${bot.guilds.size}`.white+" guilds to the website!".cyan,
-            '     `,,.          .`        '.cyan+'All bot interactions will be logged below'.cyan].join('\n   '));
-          console.log('--------------------------------------------------------------------------------\n'.cyan);
-      }
-  });
+  console.log('--------------------------------------------------------------------------------'.cyan);
+  console.log([
+    '',
+    '                ::::::       '.cyan+'Cpu Name: '.cyan+`${os.cpus()[1].model}`.white,
+    '                :::::::      '.cyan+'Logged in as: '.cyan+bot.user.tag.white,
+    '....`     ,,.   :::::::      '.cyan+'Prefix: '.cyan+prefix.white,
+    '::::::` ::::::  :::::::      '.cyan+'Activity: '.cyan+defaultgame.white,
+    '::::::: ::::::: .:::::       '.cyan+'Guilds: '.cyan+`${bot.guilds.size}`.white,
+    ' :::::: ::::::`  :::         '.cyan+'Os: '.cyan+`${os.platform()}`.white,
+    ' :::::: ::::::   :::::       '.cyan+'Cpu Count: '.cyan+`${os.cpus().length}`.white,
+    ' .:::::::::::.  :::::::      '.cyan+'Directory: '.cyan+`${__dirname}`.white,
+    '  :::::::::::   :::::::.     '.cyan+'Owner: '.cyan+'SharkFin#2790'.white,
+    '   .:::::::      :::::       '.cyan+'Voila,'.cyan+' the fun moderation bot.'.white,
+    '     `,,.          .`        '.cyan+'All bot interactions will be logged below'.cyan].join('\n   '));
+  console.log('--------------------------------------------------------------------------------\n'.cyan);
 
   bot.user.setPresence({
     status: "online",

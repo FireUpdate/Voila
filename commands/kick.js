@@ -12,6 +12,8 @@ exports.run = (message) => {
       } else {
         channel.send('Please tag the user you would like to kick.')
       }
+    } else {
+      channel.send('You do not have permission to kick. You must have the `Kick Members` permission.');
     }
   } catch (err) {
     channel.send(`Either I am unable to kick **${message.mentions.users.first().username},** or I do not have permission to kick members.`);

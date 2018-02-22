@@ -12,6 +12,8 @@ exports.run = (message) => {
       } else {
         channel.send('Please tag the user you would like to ban.')
       }
+    } else {
+      channel.send('You do not have permission to ban. You must have the `Ban Members` permission.');
     }
   } catch (err) {
     channel.send(`Either I am unable to ban **${message.mentions.users.first().username},** or I do not have permission to ban members.`);

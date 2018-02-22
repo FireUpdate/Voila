@@ -17,6 +17,7 @@ exports.run = (message) => {
           value: [
             ' - `'+prefix+'kick [@user]`  --  *Kick somebody out of your server.*',
             ' - `'+prefix+'ban [@user]`  --  *Ban somebody from your server.*',
+            ' - `'+prefix+'softban [@user]`  --  *Softban somebody. Basically a kick, but it clears messages.*',
             ' - `'+prefix+'purge [number]`  --  *Bulk delete messages. (1-100)*'
           ].join('\n')
         },
@@ -34,6 +35,14 @@ exports.run = (message) => {
             ' - `'+prefix+'server`  --  *Get some info about the server.*',
             ' - `'+prefix+'avatar [@user]`  --  *Mention not required. Gets a larger scale image of an avatar.*',
             ' - `'+prefix+'discrim`  --  *Search every guild I am in for somebody with a certain discriminator*',
+          ].join('\n')
+        },
+        {
+          name: `__**Economy**__`,
+          value: [
+            ' - `'+prefix+'credits`  --  *Check how many credits you have*',
+            ' - `'+prefix+'daily`  --  *Get 250 credits every day!*',
+            ' - `'+prefix+'pay [@user] [1-5000]`  --  *Send credits. (5000 max)*'
           ].join('\n')
         }
       ],

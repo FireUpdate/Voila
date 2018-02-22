@@ -28,7 +28,7 @@ exports.run = (message) => {
       }
 
       channel.send({embed: {
-        color: 3447003,
+        color: embedColor,
         title: "Evaluation",
         fields: [
           {
@@ -46,7 +46,5 @@ exports.run = (message) => {
       }});
     }
     message.delete(10);
-  } else {
-    channel.send("Only the owner of the bot can use this!");
   }
 }
