@@ -4,10 +4,10 @@ exports.run = (message) => {
       if (message.mentions.users.size != 0) {
         if (message.mentions.members.first().kickable) {
           message.mentions.members.first().kick().then(m => {
-            channel.send(`:boot: | **${m.user.username},** has been kicked from **${message.guild.name}**. Bye bye!`);
+            channel.send(`:boot: | **${m.user.username}** has been kicked from **${message.guild.name}**. Bye bye!`);
           });
         } else {
-          channel.send(`**${message.mentions.user.first().username},** is too priveledged for me to kick.`);
+          channel.send(`**${message.mentions.user.first().username}** is too priveledged for me to kick.`);
         }
       } else {
         channel.send('Please tag the user you would like to kick.')
