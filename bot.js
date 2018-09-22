@@ -13,12 +13,12 @@ smartbot.setNick('Voila');
 
 global.ytsearch = require('youtube-search');
 global.ytdl = require('ytdl-core');
-global.YTApiKey = auth.yttoken;
+global.YTApiKey = Process.env.YTOKEN
 
 // Configure logger settings
 // Initialize Discord Bot
 global.bot = new Discord.Client();
-bot.login(auth.token);
+bot.login(Process.env.TOKEN);
 
 bot.on('ready', () => {
   let eventFile = require(`./events/ready.js`);
