@@ -1,5 +1,4 @@
 global.Discord = require('discord.js');
-global.auth = require('./auth.json');
 global.pack = require('./package.json');
 global.fs = require('fs');
 global.figlet = require('figlet');
